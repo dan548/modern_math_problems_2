@@ -35,6 +35,20 @@ def hampel_function(y, t, s, d):
     return res / integral_result
 
 
+def hampel_function_mean(y, t):
+    global theta
+    theta = t
+    return y - theta
+
+
+def hampel_function_median(y, t, s):
+    global theta
+    global scale
+    theta = t
+    scale = s
+    return np.sign(y - theta) * 2 * scale
+
+
 xs = np.arange(-10., 10., 0.2)
 infl_fun_1 = (hampel_function(x, 0, 1, 0)[0] for x in xs)
 infl_fun_2 = (hampel_function(x, 0, 1, 0.1)[0] for x in xs)
